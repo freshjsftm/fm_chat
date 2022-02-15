@@ -10,3 +10,5 @@ const sagaMW = createSagaMW();
 const store = createStore(rootReducer, composeWithDevTools(applyMiddleware(sagaMW)));
 
 sagaMW.run(rootSaga);
+
+export default store;
