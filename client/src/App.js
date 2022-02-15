@@ -1,23 +1,26 @@
-import logo from './logo.svg';
-import './App.css';
+import {Formik, Form, Field} from 'formik';
+import {useSelector, useDispatch} from 'react-redux';
+import {bindActionCreators} from 'redux';
+import * as chatActionsCreators from './actions/actionCreatos';
 
 function App() {
+  const {isFetching, error, messages} = useSelector(chat=>state.chat);
+  const dispatch = useDispatch();
+  const {getMessageRequest, createMessageRequest} = bindActionCreators(chatActionsCreators, dispatch);
+  useEffect(() => {
+    getMessageRequest();
+  }, []);
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div>
+      <h2>
+        List messages
+      </h2>
+      <ul>
+        {
+          messages.map((msg)=>(<li key={msg._id}>{msg.text}</li>))
+        }
+      </ul>
     </div>
   );
 }
