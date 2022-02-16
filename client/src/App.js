@@ -1,10 +1,11 @@
+import { useEffect } from 'react';
 import {Formik, Form, Field} from 'formik';
 import {useSelector, useDispatch} from 'react-redux';
 import {bindActionCreators} from 'redux';
 import * as chatActionsCreators from './actions/actionCreatos';
 
 function App() {
-  const {isFetching, error, messages} = useSelector(chat=>state.chat);
+  const {isFetching, error, messages} = useSelector(state=>state.chat);
   const dispatch = useDispatch();
   const {getMessageRequest, createMessageRequest} = bindActionCreators(chatActionsCreators, dispatch);
   useEffect(() => {
