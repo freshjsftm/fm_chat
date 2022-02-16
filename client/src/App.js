@@ -13,10 +13,22 @@ function App() {
 
   return (
     <div>
+      <Formik onSubmit={(values, formikBag)=>{
+        createMessageRequest(values);
+        formikBag.resetForm();
+      }} 
+      initialValues={{author:'',text:''}}>
+        <Form>
+          <Field name='author' placeholder='author'/>
+          <Field name='text' placeholder='text'/>
+          <button type='submit'>send</button>
+        </Form>
+      </Formik>
       <h2>
         List messages
       </h2>
       <ul>
+        {isFetching && <li>load...</li>}
         {
           messages.map((msg)=>(<li key={msg._id}>{msg.text}</li>))
         }
