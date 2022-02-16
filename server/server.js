@@ -5,7 +5,11 @@ const {Message} = require('./models');
 const {port, SOCKET_EVENTS} = require('./config');
 
 const server = http.createServer(app);
-const io = SocketServer(server);
+const io = SocketServer(server, {
+  cors: {
+    origin: "http://localhost:3000"
+  }
+});
 
 io.on('connection', socket=>{
   socket.on(SOCKET_EVENTS.NEW_MESSAGE, async (newMessage)=>{
@@ -23,5 +27,5 @@ io.on('connection', socket=>{
 })
 
 server.listen(port, ()=>{
-  console.log('server started')
+  console.log('server started:', port)
 })

@@ -31,7 +31,7 @@ function App() {
       <ul>
         {isFetching && <li>load...</li>}
         {
-          messages.map((msg)=>(<li key={msg._id}>{msg.text}</li>))
+          messages && messages.map((msg)=>(<li key={msg._id}>{msg.text}</li>))
         }
       </ul>
     </div>

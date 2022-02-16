@@ -7,7 +7,7 @@ const initialState = {
   messages: []
 }
 
-export function chatReducer(state = initialState, action){
+export default function chatReducer(state = initialState, action){
   switch(action.type){
     case ACTIONS.GET_MESSAGE_REQUEST:
     case ACTIONS.CREATE_MESSAGE_REQUEST:
